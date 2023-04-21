@@ -11,6 +11,8 @@ from .views import (
     MentorListCreateAPIView, 
     MenteeListCreateAPIView,
     MentorRetrieveUpdateDestroyAPIView,
+    NotificationListCreateAPIView,
+    NotificationRetrieveUpdateDestroyAPIView,
     ProjectListCreateAPIView,
     ProjectRetrieveUpdateDestroyAPIView,
     ReviewListCreateAPIView,
@@ -50,4 +52,6 @@ urlpatterns = [
     path('api/session/<int:pk>/', SessionRetrieveUpdateDestroyAPIView.as_view(), name='session_retrieve_update_destroy'),
     path('api/availability/', AvailabilityListCreateAPIView.as_view(), name='availability_list_create'),
     path('api/availability/<int:pk>/', AvailabilityRetrieveUpdateDestroyAPIView.as_view(), name='availability_retrieve_update_destroy'),
+    path('notifications/', NotificationListCreateAPIView.as_view(), name='notification_list'),
+    path('notifications/mark-read/', NotificationRetrieveUpdateDestroyAPIView.as_view(), name='notification_mark_read'),
 ]

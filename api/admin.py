@@ -6,6 +6,7 @@ from api.models.customUserModel import User
 from api.models.domainModel import Domain
 from api.models.menteeModel import Mentee
 from api.models.mentorModel import Mentor
+from api.models.notificationModel import Notification
 from api.models.projectModel import Project
 from api.models.reviewModel import Review
 from api.models.sessionModel import Session
@@ -24,3 +25,4 @@ admin.site.register(Project)
 admin.site.register(Curriculum)
 admin.site.register(Session)
 admin.site.register(Availability)
+admin.site.register(Notification)

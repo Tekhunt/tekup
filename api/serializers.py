@@ -4,6 +4,7 @@ from api.models.availabilityModel import Availability
 from api.models.curriculumModel import Curriculum
 
 from api.models.customUserModel import User
+from api.models.notificationModel import Notification
 from api.models.projectModel import Project
 from api.models.reviewModel import Review
 from api.models.sessionModel import Session
@@ -96,4 +97,11 @@ class AvailabilitySerializer(serializers.ModelSerializer):
     mentee = MenteeSerializer(many=True)
     class Meta:
         model = Availability
+        fields = '__all__'
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=True)
+    class Meta:
+        model = Notification
         fields = '__all__'

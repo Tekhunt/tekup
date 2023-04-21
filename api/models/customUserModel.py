@@ -9,8 +9,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(_("first name"), max_length=255, blank=True, null=True)
     last_name = models.CharField(_("last name"), max_length=255, blank=True, null=True)
     email = models.EmailField(_("email address"), unique=True)
-    is_mentor = models.BooleanField(default=False)
-    is_mentee = models.BooleanField(default=False)
+    is_mentor = models.BooleanField()
+    is_mentee = models.BooleanField()
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 

@@ -4,3 +4,9 @@ from .mentorModel import Mentor
 from .skillsModel import Skill
 from .reviewModel import Review
 from .customUserModel import User
+from .notificationModel import Notification
+from .sessionModel import Session
+from .availabilityModel import Availability
+from .projectModel import Project
+from .domainModel import Domain
+from .skillCoveredModel import SkillCovered
