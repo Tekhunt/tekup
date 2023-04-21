@@ -7,6 +7,8 @@ from .views import (
     MentorListCreateAPIView, 
     MenteeListCreateAPIView,
     MentorRetrieveUpdateDestroyAPIView,
+    ReviewListCreateAPIView,
+    ReviewRetrieveUpdateDestroyAPIView,
     SkillListCreateAPIView,
     DomainListCreateAPIView,
     SkillRetrieveUpdateDestroyAPIView,
@@ -26,4 +28,6 @@ urlpatterns = [
     path('api/skills/<int:pk>/', SkillRetrieveUpdateDestroyAPIView.as_view(), name='skills-detail'),
     path('api/domains/', DomainListCreateAPIView.as_view(), name='domains-list-create'),
     path('api/domains/<int:pk>/', DomainRetrieveUpdateDestroyAPIView.as_view(), name='domains-detail'),
+    path('api/reviews/', ReviewListCreateAPIView.as_view(), name='review-list-create'),
+    path('api/reviews/<int:pk>/', ReviewRetrieveUpdateDestroyAPIView.as_view(), name='review-retrieve-update-destroy'),
 ]

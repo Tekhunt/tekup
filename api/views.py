@@ -2,8 +2,10 @@ from django.shortcuts import render
 from drf_spectacular.utils import extend_schema
 # Create your views here.
 from rest_framework import generics
+
+from api.models.reviewModel import Review
 from .models import Mentor, Mentee, Skill, Domain
-from .serializers import MentorSerializer, MenteeSerializer, SkillSerializer, DomainSerializer
+from .serializers import MentorSerializer, MenteeSerializer, ReviewSerializer, SkillSerializer, DomainSerializer
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import User
@@ -87,3 +89,13 @@ class DomainListCreateAPIView(generics.ListCreateAPIView):
 class DomainRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Domain.objects.all()
     serializer_class = DomainSerializer
+
+@extend_schema(tags=["Review"])
+class ReviewListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+
+@extend_schema(tags=["Review"])
+class ReviewRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
