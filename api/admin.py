@@ -1,4 +1,5 @@
 from django.contrib import admin
+from api.models.availabilityModel import Availability
 from api.models.curriculumModel import Curriculum
 
 from api.models.customUserModel import User
@@ -7,6 +8,7 @@ from api.models.menteeModel import Mentee
 from api.models.mentorModel import Mentor
 from api.models.projectModel import Project
 from api.models.reviewModel import Review
+from api.models.sessionModel import Session
 from api.models.skillCoveredModel import SkillCovered
 from api.models.skillsModel import Skill
 
@@ -20,9 +22,5 @@ admin.site.register(Review)
 admin.site.register(SkillCovered)
 admin.site.register(Project)
 admin.site.register(Curriculum)
-
-
-
-
-
-
+admin.site.register(Session)
+admin.site.register(Availability)

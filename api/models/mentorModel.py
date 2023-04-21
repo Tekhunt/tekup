@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from api.models.availabilityModel import Availability
 
 from api.models.customUserModel import User
 from api.models.domainModel import Domain
@@ -13,7 +14,7 @@ class Mentor(models.Model):
     bio = models.TextField(_("bio"), blank=True, null=True)
     skills = models.ManyToManyField(Skill, related_name="mentors")
     domain = models.ManyToManyField(Domain, related_name="mentors")
-    available = models.BooleanField(_("available"), default=True)
+    available = models.ManyToManyField(Availability, related_name="mentors")
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.first_name}: {self.domain.name} Mentor"

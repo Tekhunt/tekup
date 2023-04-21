@@ -2,13 +2,15 @@ from django.shortcuts import render
 from drf_spectacular.utils import extend_schema
 # Create your views here.
 from rest_framework import generics
+from api.models.availabilityModel import Availability
 from api.models.curriculumModel import Curriculum
 from api.models.projectModel import Project
 
 from api.models.reviewModel import Review
+from api.models.sessionModel import Session
 from api.models.skillCoveredModel import SkillCovered
 from .models import Mentor, Mentee, Skill, Domain
-from .serializers import CurriculumSerializer, MentorSerializer, MenteeSerializer, ProjectSerializer, ReviewSerializer, SkillCoveredSerializer, SkillSerializer, DomainSerializer
+from .serializers import AvailabilitySerializer, CurriculumSerializer, MentorSerializer, MenteeSerializer, ProjectSerializer, ReviewSerializer, SessionSerializer, SkillCoveredSerializer, SkillSerializer, DomainSerializer
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import User
@@ -132,3 +134,23 @@ class CurriculumListCreateAPIView(generics.ListCreateAPIView):
 class CurriculumRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Curriculum.objects.all()
     serializer_class = CurriculumSerializer
+
+@extend_schema(tags=["Session"])
+class SessionListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializer
+
+@extend_schema(tags=["Session"])
+class SessionRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializer
+
+@extend_schema(tags=["Availability"])
+class AvailabilityListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Availability.objects.all()
+    serializer_class = AvailabilitySerializer
+
+@extend_schema(tags=["Availability"])
+class AvailabilityRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Availability.objects.all()
+    serializer_class = AvailabilitySerializer

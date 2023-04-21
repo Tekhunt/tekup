@@ -1,6 +1,8 @@
 from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 from .views import (
+    AvailabilityListCreateAPIView,
+    AvailabilityRetrieveUpdateDestroyAPIView,
     CurriculumListCreateAPIView,
     CurriculumRetrieveUpdateDestroyAPIView,
     DomainRetrieveUpdateDestroyAPIView,
@@ -13,6 +15,8 @@ from .views import (
     ProjectRetrieveUpdateDestroyAPIView,
     ReviewListCreateAPIView,
     ReviewRetrieveUpdateDestroyAPIView,
+    SessionListCreateAPIView,
+    SessionRetrieveUpdateDestroyAPIView,
     SkillCoveredListCreateAPIView,
     SkillCoveredRetrieveUpdateDestroyAPIView,
     SkillListCreateAPIView,
@@ -42,4 +46,8 @@ urlpatterns = [
     path('api/curriculum/<int:pk>/', CurriculumRetrieveUpdateDestroyAPIView.as_view(), name='curriculum_retrieve_update_destroy'),
     path('api/project/', ProjectListCreateAPIView.as_view(), name='project_list_create'),
     path('api/project/<int:pk>/', ProjectRetrieveUpdateDestroyAPIView.as_view(), name='project_retrieve_update_destroy'),
+    path('api/session/', SessionListCreateAPIView.as_view(), name='session_list_create'),
+    path('api/session/<int:pk>/', SessionRetrieveUpdateDestroyAPIView.as_view(), name='session_retrieve_update_destroy'),
+    path('api/availability/', AvailabilityListCreateAPIView.as_view(), name='availability_list_create'),
+    path('api/availability/<int:pk>/', AvailabilityRetrieveUpdateDestroyAPIView.as_view(), name='availability_retrieve_update_destroy'),
 ]
