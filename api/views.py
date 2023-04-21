@@ -2,10 +2,13 @@ from django.shortcuts import render
 from drf_spectacular.utils import extend_schema
 # Create your views here.
 from rest_framework import generics
+from api.models.curriculumModel import Curriculum
+from api.models.projectModel import Project
 
 from api.models.reviewModel import Review
+from api.models.skillCoveredModel import SkillCovered
 from .models import Mentor, Mentee, Skill, Domain
-from .serializers import MentorSerializer, MenteeSerializer, ReviewSerializer, SkillSerializer, DomainSerializer
+from .serializers import CurriculumSerializer, MentorSerializer, MenteeSerializer, ProjectSerializer, ReviewSerializer, SkillCoveredSerializer, SkillSerializer, DomainSerializer
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import User
@@ -99,3 +102,33 @@ class ReviewListCreateAPIView(generics.ListCreateAPIView):
 class ReviewRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+@extend_schema(tags=["Skills-covered"])
+class SkillCoveredListCreateAPIView(generics.ListCreateAPIView):
+    queryset = SkillCovered.objects.all()
+    serializer_class = SkillCoveredSerializer
+
+@extend_schema(tags=["Skills-covered"])
+class SkillCoveredRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = SkillCovered.objects.all()
+    serializer_class = SkillCoveredSerializer
+
+@extend_schema(tags=["Project"])
+class ProjectListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+@extend_schema(tags=["Project"])
+class ProjectRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+@extend_schema(tags=["Curriculum"])
+class CurriculumListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Curriculum.objects.all()
+    serializer_class = CurriculumSerializer
+
+@extend_schema(tags=["Curriculum"])
+class CurriculumRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Curriculum.objects.all()
+    serializer_class = CurriculumSerializer

@@ -1,7 +1,9 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from api.models.curriculumModel import Curriculum
 
 from api.models.customUserModel import User
+from api.models.projectModel import Project
 from api.models.reviewModel import Review
 from .models import Mentor, Mentee, Skill, Domain
 
@@ -62,4 +64,20 @@ class ReviewSerializer(serializers.ModelSerializer):
     mentor = MenteeSerializer(many=True)
     class Meta:
         model = Review
+        fields = '__all__'
+
+class SkillCoveredSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skill
+        fields = '__all__'
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = '__all__'
+
+class CurriculumSerializer(serializers.ModelSerializer):
+    domain = DomainSerializer(many=True)
+    class Meta:
+        model = Curriculum
         fields = '__all__'

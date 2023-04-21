@@ -1,14 +1,20 @@
 from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 from .views import (
+    CurriculumListCreateAPIView,
+    CurriculumRetrieveUpdateDestroyAPIView,
     DomainRetrieveUpdateDestroyAPIView,
     # HomePageView,
     MenteeRetrieveUpdateDestroyAPIView,
     MentorListCreateAPIView, 
     MenteeListCreateAPIView,
     MentorRetrieveUpdateDestroyAPIView,
+    ProjectListCreateAPIView,
+    ProjectRetrieveUpdateDestroyAPIView,
     ReviewListCreateAPIView,
     ReviewRetrieveUpdateDestroyAPIView,
+    SkillCoveredListCreateAPIView,
+    SkillCoveredRetrieveUpdateDestroyAPIView,
     SkillListCreateAPIView,
     DomainListCreateAPIView,
     SkillRetrieveUpdateDestroyAPIView,
@@ -30,4 +36,10 @@ urlpatterns = [
     path('api/domains/<int:pk>/', DomainRetrieveUpdateDestroyAPIView.as_view(), name='domains-detail'),
     path('api/reviews/', ReviewListCreateAPIView.as_view(), name='review-list-create'),
     path('api/reviews/<int:pk>/', ReviewRetrieveUpdateDestroyAPIView.as_view(), name='review-retrieve-update-destroy'),
+    path('api/skills-covered/', SkillCoveredListCreateAPIView.as_view(), name='skill_covered_list_create'),
+    path('api/skills-covered/<int:pk>/', SkillCoveredRetrieveUpdateDestroyAPIView.as_view(), name='skill_covered_retrieve_update_destroy'),
+     path('api/curriculum/', CurriculumListCreateAPIView.as_view(), name='curriculum_list_create'),
+    path('api/curriculum/<int:pk>/', CurriculumRetrieveUpdateDestroyAPIView.as_view(), name='curriculum_retrieve_update_destroy'),
+    path('api/project/', ProjectListCreateAPIView.as_view(), name='project_list_create'),
+    path('api/project/<int:pk>/', ProjectRetrieveUpdateDestroyAPIView.as_view(), name='project_retrieve_update_destroy'),
 ]
