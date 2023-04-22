@@ -10,3 +10,4 @@ from .availabilityModel import Availability
 from .projectModel import Project
 from .domainModel import Domain
 from .skillCoveredModel import SkillCovered
+from .messageModel import Message

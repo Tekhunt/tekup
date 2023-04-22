@@ -4,14 +4,15 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import generics
 from api.models.availabilityModel import Availability
 from api.models.curriculumModel import Curriculum
+from api.models.messageModel import Message
 from api.models.notificationModel import Notification
 from api.models.projectModel import Project
-
+from .pusher import pusher_client
 from api.models.reviewModel import Review
 from api.models.sessionModel import Session
 from api.models.skillCoveredModel import SkillCovered
 from .models import Mentor, Mentee, Skill, Domain
-from .serializers import AvailabilitySerializer, CurriculumSerializer, MentorSerializer, MenteeSerializer, NotificationSerializer, ProjectSerializer, ReviewSerializer, SessionSerializer, SkillCoveredSerializer, SkillSerializer, DomainSerializer
+from .serializers import AvailabilitySerializer, CurriculumSerializer, MentorSerializer, MenteeSerializer, MessageSerializer, NotificationSerializer, ProjectSerializer, ReviewSerializer, SessionSerializer, SkillCoveredSerializer, SkillSerializer, DomainSerializer
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import User
@@ -19,6 +20,7 @@ from .serializers import UserSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+
 
 # @extend_schema(tags=["Home"])
 # class HomePageView(APIView):
@@ -165,3 +167,30 @@ class NotificationListCreateAPIView(generics.ListCreateAPIView):
 class NotificationRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
+
+@extend_schema(tags=["Message"])
+class MessageAPIView(APIView):
+    def get(self, request):
+        messages = Message.objects.all()
+        serializer = MessageSerializer(messages, many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        sender = request.data['sender']
+        receiver = request.data['receiver']
+        content = request.data['content']
+        
+        pusher_client.trigger('chat', 'message', {
+            'sender': sender,
+            'receiver': receiver,
+            'content': content,
+        })
+
+        Message.objects.create(sender_id=sender, receiver_id=receiver, content=content)
+        serializer = MessageSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data,
+                            status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,
+                        status=status.HTTP_400_BAD_REQUEST)
