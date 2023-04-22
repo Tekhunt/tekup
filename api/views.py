@@ -2,6 +2,7 @@ from django.shortcuts import render
 from drf_spectacular.utils import extend_schema
 # Create your views here.
 from rest_framework import generics
+from api.drfHelpers.isMentor import IsMentor
 from api.models.availabilityModel import Availability
 from api.models.curriculumModel import Curriculum
 from api.models.messageModel import Message
@@ -59,13 +60,13 @@ class LogoutView(APIView):
 # Mentor views
 @extend_schema(tags=["Mentor"])
 class MentorListCreateAPIView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated, IsMentor]
     queryset = Mentor.objects.all()
     serializer_class = MentorSerializer
 
 @extend_schema(tags=["Mentor"])
 class MentorRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated, IsMentor]
     queryset = Mentor.objects.all()
     serializer_class = MentorSerializer
 
