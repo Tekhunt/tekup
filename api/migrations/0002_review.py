@@ -6,24 +6,49 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('api', '0001_initial'),
+        ("api", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Review',
+            name="Review",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('rating', models.IntegerField(validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(5)])),
-                ('comment', models.TextField(blank=True, max_length=500)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('mentee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.mentee')),
-                ('mentor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.mentor')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "rating",
+                    models.IntegerField(
+                        validators=[
+                            django.core.validators.MinValueValidator(1),
+                            django.core.validators.MaxValueValidator(5),
+                        ]
+                    ),
+                ),
+                ("comment", models.TextField(blank=True, max_length=500)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "mentee",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="api.mentee"
+                    ),
+                ),
+                (
+                    "mentor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="api.mentor"
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
     ]

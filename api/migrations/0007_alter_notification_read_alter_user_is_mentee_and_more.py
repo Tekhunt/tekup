@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('api', '0006_availability_remove_mentor_available_notification_and_more'),
+        ("api", "0006_availability_remove_mentor_available_notification_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='notification',
-            name='read',
+            model_name="notification",
+            name="read",
             field=models.BooleanField(),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='is_mentee',
+            model_name="user",
+            name="is_mentee",
             field=models.BooleanField(),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='is_mentor',
+            model_name="user",
+            name="is_mentor",
             field=models.BooleanField(),
         ),
     ]

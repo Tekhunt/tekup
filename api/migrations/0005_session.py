@@ -7,26 +7,47 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('api', '0004_project_curriculum'),
+        ("api", "0004_project_curriculum"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Session',
+            name="Session",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('location', models.CharField(max_length=255)),
-                ('start_time', models.DateTimeField()),
-                ('end_time', models.DateTimeField()),
-                ('created_at', models.DateTimeField(default=django.utils.timezone.now)),
-                ('description', models.TextField(blank=True)),
-                ('mentee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='mentee_sessions', to=settings.AUTH_USER_MODEL)),
-                ('mentor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='mentor_sessions', to='api.mentor')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("location", models.CharField(max_length=255)),
+                ("start_time", models.DateTimeField()),
+                ("end_time", models.DateTimeField()),
+                ("created_at", models.DateTimeField(default=django.utils.timezone.now)),
+                ("description", models.TextField(blank=True)),
+                (
+                    "mentee",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="mentee_sessions",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "mentor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="mentor_sessions",
+                        to="api.mentor",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
     ]
