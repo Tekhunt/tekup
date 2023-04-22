@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     "drf_spectacular",
+    'rest_framework_simplejwt',
 ]
 
 AUTH_USER_MODEL = 'api.User'
@@ -89,9 +90,9 @@ DATABASES = {
 }
 
 REST_FRAMEWORK = {
-    # "DEFAULT_AUTHENTICATION_CLASSES": [
-    #     "rest_framework_simplejwt.authentication.JWTAuthentication",
-    # ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
