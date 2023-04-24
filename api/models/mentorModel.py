@@ -22,5 +22,5 @@ class Mentor(models.Model):
 
     def __str__(self):
         return (
-            f"{self.user.first_name} {self.user.first_name}: {self.domain.name} Mentor"
+            f"{self.user.first_name} {self.user.last_name}: {self.domain.name} Mentor"
         )
